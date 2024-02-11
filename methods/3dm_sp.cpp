@@ -5,19 +5,19 @@ Thr_SLE::Thr_SLE(const vector_d &a, const vector_d &b, const vector_d &c):
     a_comp(a), b_comp(b), c_comp(c) {};
 
 unsigned int Thr_SLE::get_size() const {
-    return b_comp.size();
+    return static_cast<unsigned int>(b_comp.size());
 }
 
 double Thr_SLE::get_from_a(int i) const {
-    return a_comp[i];
+    return a_comp[static_cast<unsigned int>(i)];
 }
 
 double Thr_SLE::get_from_b(int i) const {
-    return b_comp[i];
+    return b_comp[static_cast<unsigned int>(i)];
 }
 
 double Thr_SLE::get_from_c(int i) const {
-    return c_comp[i];
+    return c_comp[static_cast<unsigned int>(i)];
 }
 
 
@@ -38,7 +38,7 @@ vector_d solve_thr_sle(Thr_SLE &mat, vector_d &d) {
 
     solution[s - 1] = (d[s - 1] - mat.get_from_a(s - 2) * q[s - 2]) / (mat.get_from_b(s - 1) + mat.get_from_a(s - 2) * p[s - 2]);
 
-    for (unsigned int i = s - 2; i >= 0; --i) {
+    for (int i = s - 2; i >= 0; --i) {
         solution[i] = p[i] * solution[i + 1] + q[i];
     }
 

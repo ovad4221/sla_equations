@@ -5,23 +5,27 @@
 
 
 Thr_SLE rand_thr_sle() {
-    // std::default_random_engine re;
+    std::default_random_engine re;
 
-    // double lower_bound = -10;
-    // double upper_bound = 10;
-    // std::uniform_real_distribution<double> unif(lower_bound,upper_bound);
+    double lower_bound = -10;
+    double upper_bound = 10;
+    std::uniform_real_distribution<double> unif(lower_bound,upper_bound);
 
-    // auto gen = [&unif, &re](){
-    //                return unif(re);
-    //            };
+    auto gen = [&unif, &re](){
+                   return unif(re);
+               };
 
-    vector<double> a = {0.1, 0.2, 1.1, 0.4, 1.1, 0.2, 1.1, 0.4, 1.1};
-    vector<double> b = {0.1, 0.2, 1.1, 0.4, 1.1, 0.2, 1.1, 0.4, 1.1, 0.4};
-    vector<double> c = {0.1, 0.2, 1.1, 0.4, 1.1, 0.2, 1.1, 0.4, 1.1};
+    // vector<double> a = {0.1, 0.2, 1.1, 0.4, 1.1, 0.2, 1.1, 0.4, 1.1};
+    // vector<double> b = {0.1, 0.2, 1.1, 0.4, 1.1, 0.2, 1.1, 0.4, 1.1, 0.4};
+    // vector<double> c = {0.1, 0.2, 1.1, 0.4, 1.1, 0.2, 1.1, 0.4, 1.1};
 
-    // generate(begin(a), end(a), gen);
-    // generate(begin(b), end(b), gen);
-    // generate(begin(c), end(c), gen);
+    vector<double> a(9);
+    vector<double> b(10);    
+    vector<double> c(9);
+
+    generate(begin(a), end(a), gen);
+    generate(begin(b), end(b), gen);
+    generate(begin(c), end(c), gen);
 
     // Optional
     for (auto i : a) {
@@ -59,6 +63,7 @@ vector_d get_d_from_x(Thr_SLE &sle, vector_d &sol) {
     for (auto i : d) {
         std::cout << i << "  ";
     }
+    std::cout << std::endl;
 
     return d;
 }
