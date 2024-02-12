@@ -1,5 +1,5 @@
 #pragma once
-#include "../headers_of_meth/3dm_sp_h.hpp"
+#include "../src/headers_of_meth/3dm_sp_h.hpp"
 
 Thr_SLE rand_thr_sle();
 

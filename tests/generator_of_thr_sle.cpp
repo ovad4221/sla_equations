@@ -27,21 +27,21 @@ Thr_SLE rand_thr_sle() {
     generate(begin(b), end(b), gen);
     generate(begin(c), end(c), gen);
 
-    // Optional
-    for (auto i : a) {
-        std::cout << i << " ";
-    }
-    std::cout << std::endl;
+    // // Optional
+    // for (auto i : a) {
+    //     std::cout << i << " ";
+    // }
+    // std::cout << std::endl;
 
-    for (auto i : b) {
-        std::cout << i << " ";
-    }
-    std::cout << std::endl;
+    // for (auto i : b) {
+    //     std::cout << i << " ";
+    // }
+    // std::cout << std::endl;
     
-    for (auto i : c) {
-        std::cout << i << " ";
-    }
-    std::cout << std::endl;
+    // for (auto i : c) {
+    //     std::cout << i << " ";
+    // }
+    // std::cout << std::endl;
 
     Thr_SLE rand_sle(a, b, c);
 
@@ -60,10 +60,10 @@ vector_d get_d_from_x(Thr_SLE &sle, vector_d &sol) {
 
     d[s - 1] = sle.get_from_a(s - 2) * sol[s - 2] + sle.get_from_b(s - 1) * sol[s - 1];
 
-    for (auto i : d) {
-        std::cout << i << "  ";
-    }
-    std::cout << std::endl;
+    // for (auto i : d) {
+    //     std::cout << i << "  ";
+    // }
+    // std::cout << std::endl;
 
     return d;
 }

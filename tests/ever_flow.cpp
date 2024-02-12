@@ -1,4 +1,4 @@
-#include "../headers_of_meth/3dm_sp_h.hpp"
+#include "../src/headers_of_meth/3dm_sp_h.hpp"
 #include "../test_headers/gen_h.hpp"
 #include <iostream>
 
