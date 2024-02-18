@@ -1,4 +1,4 @@
-#include <../headers_of_meth/CSR_h.hpp>
+#include <../headers_of_meth/CSR.hpp>
 
 
 CSR::CSR(const vector_d &matrix, int length) {
@@ -18,6 +18,27 @@ CSR::CSR(const vector_d &matrix, int length) {
     }
 }
 
-CSR::CSR(DenseMatrix &matrix) {
+CSR::CSR(const DenseMatrix &matrix) {
     CSR(matrix.get_vector(), matrix.get_length());
+}
+
+double CSR::operator()(int m_row, int m_col) const {
+    for (int k = rows[m_row]; k < rows[m_row + 1]; ++k) {
+        if (cols[k] == m_col) {
+            return values[k];
+        }
+    }
+    return 0;
+}
+
+vector_d CSR::operator*(const vector_d &vect) const {
+    vector_d res(n, 0);
+    for (auto i : rows) {
+        for (auto value = rows[i]; value)
+    }
+
+}
+
+Vector CSR::operator*(const Vector &vect) const {
+    return Vector((*this) * vect.get_vector());
 }

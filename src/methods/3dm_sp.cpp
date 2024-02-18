@@ -1,27 +1,27 @@
-#include "../headers_of_meth/3dm_sp_h.hpp"
+#include "../headers_of_meth/3dm_sp.hpp"
 #include <iostream>
 
-Thr_SLE::Thr_SLE(const vector_d &a, const vector_d &b, const vector_d &c): 
+ThrSLE::ThrSLE(const vector_d &a, const vector_d &b, const vector_d &c): 
     a_comp(a), b_comp(b), c_comp(c) {};
 
-unsigned int Thr_SLE::get_size() const {
+unsigned int ThrSLE::get_size() const {
     return static_cast<unsigned int>(b_comp.size());
 }
 
-double Thr_SLE::get_from_a(int i) const {
+double ThrSLE::get_from_a(int i) const {
     return a_comp[static_cast<unsigned int>(i)];
 }
 
-double Thr_SLE::get_from_b(int i) const {
+double ThrSLE::get_from_b(int i) const {
     return b_comp[static_cast<unsigned int>(i)];
 }
 
-double Thr_SLE::get_from_c(int i) const {
+double ThrSLE::get_from_c(int i) const {
     return c_comp[static_cast<unsigned int>(i)];
 }
 
 
-vector_d solve_thr_sle(Thr_SLE &mat, vector_d &d) {
+vector_d solve_thr_sle(const ThrSLE &mat, const vector_d &d) {
     unsigned int s = mat.get_size();
     vector_d p(s);
     vector_d q(s);

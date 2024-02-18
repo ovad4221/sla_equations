@@ -29,6 +29,10 @@ double Vector::module_v() const {
     return std::sqrt(square_module_v());
 }
 
+const vector<double>& Vector::get_vector() const {
+    return vect;
+}
+
 unsigned int Vector::getSize() const {
     return vect.size();
 }
@@ -123,6 +127,21 @@ Vector Vector::operator* (const double a) const {
     }
     return v_out;
 }
+
+
+double Vector::operator* (const Vector& v2) const {
+    double sc = 0;
+    for (int i = 0; i < vect.size(); ++i) {
+        sc += vect[i] * v2.vect[i];
+    }
+    return sc;
+}
+
+template<typename MatrixClass>
+double Vector::dot(const Vector& v2, const MatrixClass& gramma) const {
+    return (*this) * (gramma * v2);
+}
+
 
 Vector Vector::operator/ (const double a) const {
     Vector v_out(vect.size());

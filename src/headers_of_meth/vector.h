@@ -1,7 +1,5 @@
-#ifndef VECTOR_H
-#define VECTOR_H
+#pragma once 
 
-#define DEBUG
 #include <vector>
 #include <ostream>
 #include <iostream>
@@ -25,6 +23,8 @@ public:
     double module_v() const;
 
     double square_module_v() const;
+
+    const vector<double>& get_vector() const;
 
     // Получение размерности вектора
     unsigned int getSize() const;
@@ -50,6 +50,16 @@ public:
     void operator-= (const Vector& v2);
 
     Vector operator* (const double a) const;
+
+    // скалярное произведение
+    double operator* (const Vector& v2) const;
+
+    // скалярное произведение в неортогональном базисе
+    template<typename MatrixClass>
+    double dot(const Vector& v2, const MatrixClass& gramma) const;
+
+    // векторное произведение
+    double operator^ (const Vector& v2) const;
 
     Vector operator/ (const double a) const;
 
@@ -85,4 +95,3 @@ std::ostream& operator<<(std::ostream& os, const Vector &v);
 
 std::istream& operator>>(std::istream &is, Vector &v);
 
-#endif
