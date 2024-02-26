@@ -1,7 +1,7 @@
 #include <cmath>
 #include <algorithm>
 #include <initializer_list>
-#include "../headers_of_meth/vector.h"
+#include "../headers_of_meth/vector.hpp"
 
 using std::vector;
 using std::istream;

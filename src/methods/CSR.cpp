@@ -32,11 +32,13 @@ double CSR::operator()(int m_row, int m_col) const {
 }
 
 vector_d CSR::operator*(const vector_d &vect) const {
-    vector_d res(n, 0);
-    for (auto i : rows) {
-        for (auto value = rows[i]; value)
+    vector_d res(vect.size());
+    for (unsigned i = 0; i < vect.size(); ++i) {
+        for (auto value = rows[i]; value < rows[i + 1]; ++value) {
+            res[i] += values[value] * vect[cols[value]];
+        }
     }
-
+    return res;
 }
 
 Vector CSR::operator*(const Vector &vect) const {

@@ -1,4 +1,4 @@
-#include "../test_headers/gen_h.hpp"
+#include "gen_h.hpp"
 #include <algorithm>
 #include <random>
 #include <iostream>
