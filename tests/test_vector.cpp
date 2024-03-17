@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "../vect_lib/vector.h"
+#include "../src/headers_of_meth/vector.hpp"
 
 using std::vector;
 using std::istream;
@@ -19,6 +19,9 @@ int main() {
     cout << a - b << endl;
     cout << a.slice(3, 6);
     cout << a[1];
+
+    Vector d(4, 7);
+    cout << d;
 
     cout << "all ok)" << endl;
 

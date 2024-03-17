@@ -7,13 +7,15 @@ else ()
         headers_of_meth/CSR.hpp
         headers_of_meth/DenseMatrix.hpp
         headers_of_meth/vector.hpp
+        headers_of_meth/simple_iter_methods.hpp
         )
 
     set(SOURCES
-        methods/3dm_sp.cpp;
-        methods/CSR.cpp;
-        methods/DenseMatrix.cpp;
-        methods/vector.cpp;
+        methods/3dm_sp.cpp
+        methods/CSR.cpp
+        methods/DenseMatrix.cpp
+        methods/vector.cpp
+        methods/simple_iter_methods.cpp
         )
 
     source_group("Header Files" FILES ${HEADERS})

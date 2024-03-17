@@ -1,4 +1,4 @@
-#include <../headers_of_meth/CSR.hpp>
+#include "../headers_of_meth/CSR.hpp"
 
 
 CSR::CSR(const vector_d &matrix, int length) {
@@ -42,5 +42,36 @@ vector_d CSR::operator*(const vector_d &vect) const {
 }
 
 Vector CSR::operator*(const Vector &vect) const {
-    return Vector((*this) * vect.get_vector());
+    return Vector{this->operator*(vect.get_vector())};
+}
+
+vector_d CSR::mult_wishout_d(const vector_d &vect) const {
+    vector_d res(vect.size());
+    for (unsigned i = 0; i < vect.size(); ++i) {
+        for (auto value = rows[i]; value < rows[i + 1]; ++value) {
+            if (i != cols[value]) res[i] += values[value] * vect[cols[value]];
+        }
+    }
+    return res;
+}
+
+Vector CSR::mult_wishout_d(const Vector &vect) const {
+    return Vector{this->mult_wishout_d(vect.get_vector())};
+}
+
+vector_d CSR::mult_only_obr_d(const vector_d &vect) const {
+    vector_d res(vect.size());
+    for (unsigned i = 0; i < vect.size(); ++i) {
+        for (auto value = rows[i]; value < rows[i + 1]; ++value) {
+            if (i == cols[value]) {
+                res[i] = static_cast<double>(vect[cols[value]] / values[value]);
+                break;
+            } 
+        }
+    }
+    return res;
+}
+
+Vector CSR::mult_only_obr_d(const Vector &vect) const {
+    return Vector{this->mult_only_obr_d(vect.get_vector())};
 }

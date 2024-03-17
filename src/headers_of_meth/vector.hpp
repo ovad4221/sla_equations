@@ -4,27 +4,36 @@
 #include <ostream>
 #include <iostream>
 
-using std::vector;
+
+// класс базисного вектора ортогональной системы
+// class OrtBaseVector: public Vector {
+// public:
+//     // на и-ом месте 1 остальные 0
+//     OrtBaseVector(unsigned int i, unsigned int height);
+// };
+
 
 class Vector {
     friend std::ostream& operator<<(std::ostream& os, const Vector &v);
     friend std::istream& operator>>(std::istream &is, Vector &v);
-private:
-    vector<double> vect;
+protected:
+    std::vector<double> vect;
 public:
-    Vector(vector<double> &vect);
+    Vector(const std::vector<double> &vect);
     // Vector with n zeros
     Vector(unsigned int n);
+    // base vector i - 1
+    Vector(unsigned int i, unsigned int height);
     Vector(std::initializer_list<double> l);
     Vector();
     
     ~Vector();
 
     double module_v() const;
-
+ 
     double square_module_v() const;
 
-    const vector<double>& get_vector() const;
+    const std::vector<double>& get_vector() const;
 
     // Получение размерности вектора
     unsigned int getSize() const;

@@ -3,15 +3,24 @@
 #include <initializer_list>
 #include "../headers_of_meth/vector.hpp"
 
-using std::vector;
 using std::istream;
 using std::ostream;
 using std::cout;
 using std::endl;
 
+// надо доработатьЫ
+// OrtBaseVector::OrtBaseVector(unsigned int i, unsigned int height): Vector(height) {
+//     vect[i] = 1;
+// }
 
-Vector::Vector(vector<double> &vect): vect(vect) {};
+Vector::Vector(const std::vector<double> &vect): vect(vect) {};
 Vector::Vector(unsigned int n): vect(n, 0) {};
+
+Vector::Vector(unsigned int i, unsigned int height) {
+    vect.resize(height, 0);
+    vect[i] = 1;
+};
+
 Vector::Vector(std::initializer_list<double> l): vect(l) {};
 Vector::Vector(): Vector(6) {};
 
@@ -29,7 +38,7 @@ double Vector::module_v() const {
     return std::sqrt(square_module_v());
 }
 
-const vector<double>& Vector::get_vector() const {
+const std::vector<double>& Vector::get_vector() const {
     return vect;
 }
 

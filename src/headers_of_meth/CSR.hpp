@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "../headers_of_meth/DenseMatrix.hpp"
+#include "./DenseMatrix.hpp"
 
 class CSR {
 private:
@@ -14,7 +14,11 @@ public:
     double operator()(int row, int cal) const;
 
     vector_d operator*(const vector_d &vect) const;
-
     Vector operator*(const Vector &vect) const;
 
+    vector_d mult_wishout_d(const vector_d &vect) const;
+    Vector mult_wishout_d(const Vector &vect) const;
+
+    vector_d mult_only_obr_d(const vector_d &vect) const;
+    Vector mult_only_obr_d(const Vector &vect) const;
 };
