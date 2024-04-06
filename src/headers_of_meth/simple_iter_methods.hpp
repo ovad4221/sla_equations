@@ -1,4 +1,4 @@
-#include "./CSR.hpp"
+#include "CSR.hpp"
 
 
 namespace iter_methods {

@@ -26,7 +26,7 @@ public:
     int get_height() const;
 
     // извлечь k-ый столбец матрицы как вектор с from строчки
-    const Vector& get_column(int k, int from) const;
+    Vector get_column(int k, int from) const;
 
     // установить k-ый столбец матрицы как новый вектор
     void set_column(int k, int from, const Vector& col);
@@ -39,7 +39,7 @@ public:
 
     // вернуть спан на кусок строчки номера k 
     // с элемента индекса from
-    std::span<double>& get_span(int k, int from);
+    std::span<double> get_span(int k, int from);
 
     double operator()(int row, int cal) const;
 
