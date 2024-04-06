@@ -10,26 +10,27 @@ using vector_d = std::vector<double>;
 
 class DenseMatrix {
 private:
-    vector_d matrix;
-    int length;
-    int height;
+    vector_d matrix_;
+    size_t length_;
+    size_t height_;
+
 public:
-    DenseMatrix(const vector_d &matrix, int length);
-    DenseMatrix(int length, int hieght, double value);
+    DenseMatrix(const vector_d &matrix, size_t length);
+    DenseMatrix(size_t length, size_t height, double value);
     // eye
-    DenseMatrix(int length, int hieght);
+    DenseMatrix(size_t length, size_t height);
 
     const vector_d& get_vector() const;
 
-    int get_length() const;
+    size_t get_length() const;
 
-    int get_height() const;
+    size_t get_height() const;
 
-    // извлечь k-ый столбец матрицы как вектор с from строчки
-    Vector get_column(int k, int from) const;
+    // // извлечь k-ый столбец матрицы как вектор с from строчки
+    // Vector get_column(size_t k, size_t from) const;
 
-    // установить k-ый столбец матрицы как новый вектор
-    void set_column(int k, int from, const Vector& col);
+    // // установить k-ый столбец матрицы как новый вектор
+    // void set_column(size_t k, size_t from, const Vector& col);
 
     // извлечь k-ую строку матрицы как вектор с from строчки
     // void change_string(int k, int from);
@@ -39,14 +40,20 @@ public:
 
     // вернуть спан на кусок строчки номера k 
     // с элемента индекса from
-    std::span<double> get_span(int k, int from);
+    std::span<double> get_span(size_t k, size_t from);
 
-    double operator()(int row, int cal) const;
+    double& operator[] (size_t ind);
+
+    double operator() (int row, int cal) const;
 
     vector_d operator*(const vector_d &vect) const;
 
     Vector operator*(const Vector &vect) const;
 
-    void transpose();
+    // for squere matrix
+    void sq_transpose();
 
+    void transpose();
 };
+
+std::ostream& operator<<(std::ostream& os, const DenseMatrix &m);

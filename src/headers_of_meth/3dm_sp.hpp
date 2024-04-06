@@ -8,7 +8,7 @@ class ThrSLE {
 private:
     vector_d a_comp;
     vector_d b_comp;
-    vector_d c_comp;  
+    vector_d c_comp;   
 public:
     ThrSLE(const vector_d &a, const vector_d &b, const vector_d &c);
 

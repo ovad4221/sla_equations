@@ -2,25 +2,29 @@
 #include <algorithm>
 
 
-DenseMatrix::DenseMatrix(const vector_d &matrix, int length): matrix(matrix), length(length), height(matrix.size() / length) {};
-DenseMatrix::DenseMatrix(int length, int hieght, double value): matrix(vector_d(length * height, value)), length(length), height(height) {};
+DenseMatrix::DenseMatrix(const vector_d &matrix, size_t length): matrix_(matrix), length_(length), height_(matrix.size() / length) {};
+DenseMatrix::DenseMatrix(size_t length, size_t height, double value): matrix_(length * height, value), length_(length), height_(height) {};
 
-DenseMatrix::DenseMatrix(int length, int hieght) {
-    matrix.resize(length * height);
-    for (unsigned i = 0; i < (length < height) ? length : height; ++i) {
-        matrix[i + i * length] = 1;
+DenseMatrix::DenseMatrix(size_t length, size_t height): DenseMatrix(length, height, 0) {
+    for (size_t i = 0; i < (length_ < height_ ? length_ : height_); ++i) {
+        std::cout << i;
+        matrix_[i + i * length_] = 1;
     }
 }
 
-double DenseMatrix::operator()(int row, int cal) const {
-    return matrix[row * length + cal];
+double DenseMatrix::operator() (int row, int cal) const {
+    return matrix_[row * length_ + cal];
+}
+
+double& DenseMatrix::operator[] (size_t ind) {
+    return matrix_[ind];
 }
 
 vector_d DenseMatrix::operator*(const vector_d &vect) const {
-    vector_d res(height);
-    for (int i = 0; i < height; ++i) {
+    vector_d res(height_);
+    for (size_t i = 0; i < height_; ++i) {
         res[i] = 0;
-        for (int j = 0; j < length; ++j) {
+        for (size_t j = 0; j < length_; ++j) {
             res[i] += (*this)(i, j) * vect[j];
         }
     }
@@ -32,45 +36,74 @@ Vector DenseMatrix::operator*(const Vector &vect) const {
 }
 
 const vector_d& DenseMatrix::get_vector() const {
-        return matrix;
+        return matrix_;
     }
 
-Vector DenseMatrix::get_column(int k, int) const {
-    Vector col(height);
-    for (unsigned int i = 0; i < height; ++i) {
-        col.setValue(i, matrix[k + i * length]);
-    }
-    return col;
+// Vector DenseMatrix::get_column(size_t k, size_t) const {
+//     Vector col(height);
+//     for (unsigned int i = 0; i < height; ++i) {
+//         col.setValue(i, matrix[k + i * length]);
+//     }
+//     return col;
+// }
+
+// void DenseMatrix::set_column(size_t k, size_t, const Vector& col) {
+//     for (unsigned int i = 0; i < height; ++i) {
+//         matrix[k + i * length] = col.getValue(i);
+//     }
+// }
+
+
+size_t DenseMatrix::get_length() const {
+    return length_;
 }
 
-void DenseMatrix::set_column(int k, int, const Vector& col) {
-    for (unsigned int i = 0; i < height; ++i) {
-        matrix[k + i * length] = col.getValue(i);
-    }
+size_t DenseMatrix::get_height() const {
+    return height_;
 }
 
-std::span<double> DenseMatrix::get_span(int k, int from) {
-    std::span<double> sp{matrix.begin() + k * length + from, matrix.begin() + k * (length + 1)};
-    return sp;
-}
-
-int DenseMatrix::get_length() const {
-    return length;
-}
-
-int DenseMatrix::get_height() const {
-    return height;
+void DenseMatrix::sq_transpose() {
+    for (size_t i = 0; i < height_; ++i) {
+            for(size_t j = i + 1; j < length_; ++j) {
+                double temp = matrix_[length_ * i + j];
+                matrix_[height_ * i + j] = matrix_[length_ * j + i];
+                matrix_[height_ * j + i] = temp;
+            }
+        }
+    auto temp = length_;
+    length_ = height_;
+    height_ = temp; 
 }
 
 void DenseMatrix::transpose() {
-    for (size_t i = 0; i < height; ++i){
-            for(size_t j = i + 1; j < length; ++j){
-                double temp = matrix[length * i + j];
-                matrix[length * i + j] = matrix[length * j + i];
-                matrix[length * j + i] = temp;
+    vector_d h(matrix_.size());
+    for (size_t j = 0; j < length_; ++j) {
+            for(size_t i = 0; i < height_; ++i) {
+                h[j * height_ + i] = matrix_[i * length_ + j];
             }
         }
-    auto temp = length;
-    length = height;
-    height = temp; 
+    matrix_ = h;
+    auto temp = length_;
+    length_ = height_;
+    height_ = temp; 
 }
+
+std::span<double> DenseMatrix::get_span(size_t k, size_t from) {
+    std::span<double> sp{matrix_.begin() + k * length_ + from, matrix_.begin() + k * (length_ + 1)};
+    return sp;
+}
+
+// output print
+std::ostream& operator<<(std::ostream& os, const DenseMatrix &m) {
+    os << "DenseMatrix with length = " << m.get_length() << " and height = " << m.get_height() << " :\n";
+    for (size_t i = 0; i < m.get_height(); ++i) {
+        for(size_t j = 0; j < m.get_length(); ++j) {
+            os << m(i, j) << ' ';
+        }
+        os << std::endl;
+    }
+    os << std::endl;
+    return os;
+}
+
+

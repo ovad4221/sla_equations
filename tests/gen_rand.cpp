@@ -19,10 +19,10 @@ vector_d rand_vector(size_t len, std::uniform_real_distribution<double>& uniform
 }
 
 ThrSLE rand_thr_sle(size_t h, std::uniform_real_distribution<double>& uniform, std::mt19937_64& engine) {
-    vector_d a(h - 1), b(h - 1), c(h);
+    vector_d a(h - 1), b(h), c(h - 1);
     rand_vector(a, h - 1, uniform, engine);
-    rand_vector(b, h - 1, uniform, engine);
-    rand_vector(c, h, uniform, engine);
+    rand_vector(b, h, uniform, engine);
+    rand_vector(c, h - 1, uniform, engine);
     
     ThrSLE rr(a, b, c);
     return rr;
