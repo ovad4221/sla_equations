@@ -8,15 +8,15 @@ unsigned int ThrSLE::get_size() const {
     return static_cast<unsigned int>(b_comp.size());
 }
 
-double ThrSLE::get_from_a(int i) const {
+double ThrSLE::get_from_a(unsigned int i) const {
     return a_comp[static_cast<unsigned int>(i)];
 }
 
-double ThrSLE::get_from_b(int i) const {
+double ThrSLE::get_from_b(unsigned int i) const {
     return b_comp[static_cast<unsigned int>(i)];
 }
 
-double ThrSLE::get_from_c(int i) const {
+double ThrSLE::get_from_c(unsigned int i) const {
     return c_comp[static_cast<unsigned int>(i)];
 }
 

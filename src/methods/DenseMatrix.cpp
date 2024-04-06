@@ -1,4 +1,4 @@
-#include "../headers_of_meth/DenseMatrix.hpp"
+#include "headers_of_meth/DenseMatrix.hpp"
 #include <algorithm>
 
 
@@ -8,7 +8,7 @@ DenseMatrix::DenseMatrix(int length, int hieght, double value): matrix(vector_d(
 DenseMatrix::DenseMatrix(int length, int hieght) {
     matrix.resize(length * height);
     for (unsigned i = 0; i < (length < height) ? length : height; ++i) {
-        matrix[i + i * length];
+        matrix[i + i * length] = 1;
     }
 }
 
@@ -35,7 +35,7 @@ const vector_d& DenseMatrix::get_vector() const {
         return matrix;
     }
 
-const Vector& DenseMatrix::get_column(int k) const {
+Vector DenseMatrix::get_column(int k, int) const {
     Vector col(height);
     for (unsigned int i = 0; i < height; ++i) {
         col.setValue(i, matrix[k + i * length]);
@@ -43,13 +43,13 @@ const Vector& DenseMatrix::get_column(int k) const {
     return col;
 }
 
-void DenseMatrix::set_column(int k, const Vector& col) {
+void DenseMatrix::set_column(int k, int, const Vector& col) {
     for (unsigned int i = 0; i < height; ++i) {
         matrix[k + i * length] = col.getValue(i);
     }
 }
 
-std::span<double>& DenseMatrix::get_span(int k, int from) {
+std::span<double> DenseMatrix::get_span(int k, int from) {
     std::span<double> sp{matrix.begin() + k * length + from, matrix.begin() + k * (length + 1)};
     return sp;
 }
