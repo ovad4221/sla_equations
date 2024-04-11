@@ -11,5 +11,5 @@ public:
 
     void Q_transpose();
 
-    std::pair<DenseMatrix&, DenseMatrix&> get_qr() const;
+    // std::pair<DenseMatrix&, DenseMatrix&> get_qr() const;
 };

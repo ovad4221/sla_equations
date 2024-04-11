@@ -13,15 +13,15 @@ int main() {
     
     cout << a << b << c;
     cout << "Module a = " << a.module_v() << endl;
-    c.setValue(1, 13);
-    cout << c.getValue(1);
+    c.set_value(1, 13);
+    cout << c.get_value(1);
     cout << (a == b) << (a != b) << endl;
     cout << a - b << endl;
     cout << a.slice(3, 6);
     cout << a[1];
 
     Vector d(4, 7);
-    cout << d;
+    cout << d[3];
 
     cout << "all ok)" << endl;
 

@@ -14,8 +14,6 @@
 
 
 class Vector {
-    friend std::ostream& operator<<(std::ostream& os, const Vector &v);
-    friend std::istream& operator>>(std::istream &is, Vector &v);
 protected:
     std::vector<double> vect;
 public:
@@ -36,15 +34,15 @@ public:
     const std::vector<double>& get_vector() const;
 
     // Получение размерности вектора
-    unsigned int getSize() const;
+    unsigned int get_size() const;
 
     // Получение значения i-ой координаты вектора
-    double getValue (unsigned int i) const;
+    double get_value(unsigned int i) const;
 
     double& operator[] (unsigned int i);
 
     // Задание значения i-ой координаты вектора равным value
-    void setValue(unsigned int i, int value);
+    void set_value(unsigned int i, int value);
 
     bool operator== (const Vector& v2) const;
 
@@ -82,7 +80,7 @@ public:
 
     void resize(unsigned int n);
 
-    // slice from vector
+    // slice from vector (наследие древности)
     Vector slice(unsigned int i0, unsigned int i1) const;
 
     Vector slice(unsigned int i);
@@ -101,6 +99,3 @@ Vector operator* (double a, const Vector& v);
 // Vector operator* (int a, const Vector& v);
 
 std::ostream& operator<<(std::ostream& os, const Vector &v);
-
-std::istream& operator>>(std::istream &is, Vector &v);
-

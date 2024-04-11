@@ -26,11 +26,11 @@ public:
 
     size_t get_height() const;
 
-    // // извлечь k-ый столбец матрицы как вектор с from строчки
-    // Vector get_column(size_t k, size_t from) const;
+    // извлечь k-ый столбец матрицы как вектор с from строчки
+    Vector get_column(size_t k, size_t from) const;
 
-    // // установить k-ый столбец матрицы как новый вектор
-    // void set_column(size_t k, size_t from, const Vector& col);
+    // установить k-ый столбец матрицы как новый вектор
+    void set_column(size_t k, size_t from, const Vector& col);
 
     // извлечь k-ую строку матрицы как вектор с from строчки
     // void change_string(int k, int from);

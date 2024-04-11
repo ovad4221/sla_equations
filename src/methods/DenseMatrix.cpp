@@ -7,7 +7,6 @@ DenseMatrix::DenseMatrix(size_t length, size_t height, double value): matrix_(le
 
 DenseMatrix::DenseMatrix(size_t length, size_t height): DenseMatrix(length, height, 0) {
     for (size_t i = 0; i < (length_ < height_ ? length_ : height_); ++i) {
-        std::cout << i;
         matrix_[i + i * length_] = 1;
     }
 }
@@ -39,19 +38,19 @@ const vector_d& DenseMatrix::get_vector() const {
         return matrix_;
     }
 
-// Vector DenseMatrix::get_column(size_t k, size_t) const {
-//     Vector col(height);
-//     for (unsigned int i = 0; i < height; ++i) {
-//         col.setValue(i, matrix[k + i * length]);
-//     }
-//     return col;
-// }
+Vector DenseMatrix::get_column(size_t k, size_t from) const {
+    Vector col(height_);
+    for (unsigned int i = from; i < height_; ++i) {
+        col.set_value(i, matrix_[k + i * length_]);
+    }
+    return col;
+}
 
-// void DenseMatrix::set_column(size_t k, size_t, const Vector& col) {
-//     for (unsigned int i = 0; i < height; ++i) {
-//         matrix[k + i * length] = col.getValue(i);
-//     }
-// }
+void DenseMatrix::set_column(size_t k, size_t from, const Vector& col) {
+    for (unsigned int i = from; i < height_; ++i) {
+        matrix_[k + i * length_] = col.get_value(i);
+    }
+}
 
 
 size_t DenseMatrix::get_length() const {

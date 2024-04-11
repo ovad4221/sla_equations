@@ -42,11 +42,11 @@ const std::vector<double>& Vector::get_vector() const {
     return vect;
 }
 
-unsigned int Vector::getSize() const {
+unsigned int Vector::get_size() const {
     return vect.size();
 }
 
-double Vector::getValue(unsigned int i) const {
+double Vector::get_value(unsigned int i) const {
     return vect[i];
 }
 
@@ -54,7 +54,7 @@ double& Vector::operator[] (unsigned int i) {
     return vect[i];
 }
 
-void Vector::setValue(unsigned int i, int value) {
+void Vector::set_value(unsigned int i, int value) {
     vect[i] = value;
 }
 
@@ -218,34 +218,26 @@ void Vector::glue_v(const Vector &&v2) {
 
 // template<typename T>
 // Vector operator* (T a, const Vector& v) { 
-//     Vector v_out(v.getSize());
-//         for (unsigned int i = 0; i < v.getSize(); ++i) {
-//             v_out.setValue(i, v.getValue(i) * a);
+//     Vector v_out(v.get_size());
+//         for (unsigned int i = 0; i < v.get_size(); ++i) {
+//             v_out.set_value(i, v.get_value(i) * a);
 //         }
 //         return v_out;
 // }
 
 Vector operator* (double a, const Vector& v) { 
-    Vector v_out(v.getSize());
-        for (unsigned int i = 0; i < v.getSize(); ++i) {
-            v_out.setValue(i, v.getValue(i) * a);
+    Vector v_out(v.get_size());
+        for (unsigned int i = 0; i < v.get_size(); ++i) {
+            v_out.set_value(i, v.get_value(i) * a);
         }
         return v_out;
 }
 
 std::ostream& operator<<(std::ostream& os, const Vector &v) {
-    os << "Vector with size " << v.vect.size() << ": ( ";
-    for (auto elem: v.vect) {
-        os << elem << ' ';
+    os << "Vector with size " << v.get_size()<< ": ( ";
+    for (size_t i = 0; i < v.get_size(); ++i) {
+        os << v.get_value(i) << ' ';
     }
     os << ") \n";
     return os;
 };
-
-std::istream& operator>>(std::istream &is, Vector &v) {
-    for (unsigned int i = 0; i < v.vect.size(); ++i) {
-        is >> v.vect[i];
-    }
-    return is;
-};
-

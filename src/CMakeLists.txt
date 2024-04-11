@@ -8,6 +8,7 @@ else ()
         headers_of_meth/DenseMatrix.hpp
         headers_of_meth/vector.hpp
         headers_of_meth/simple_iter_methods.hpp
+        headers_of_meth/householder.hpp
         )
 
     set(SOURCES
@@ -16,6 +17,7 @@ else ()
         methods/DenseMatrix.cpp
         methods/vector.cpp
         methods/simple_iter_methods.cpp
+        methods/householder.cpp
         )
 
     source_group("Header Files" FILES ${HEADERS})

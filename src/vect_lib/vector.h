@@ -27,15 +27,15 @@ public:
     double square_module_v() const;
 
     // Получение размерности вектора
-    unsigned int getSize() const;
+    unsigned int get_size() const;
 
     // Получение значения i-ой координаты вектора
-    double getValue (unsigned int i) const;
+    double get_value (unsigned int i) const;
 
     double& operator[] (unsigned int i);
 
     // Задание значения i-ой координаты вектора равным value
-    void setValue(unsigned int i, int value);
+    void set_value(unsigned int i, int value);
 
     bool operator== (const Vector& v2) const;
 
