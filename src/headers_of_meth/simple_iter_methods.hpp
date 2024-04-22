@@ -24,4 +24,10 @@ namespace iter_methods {
 [[nodiscard]] Vector fastest_gradient_descent(const CSR& csr, const Vector& x_0, const Vector& b,
         double required_accuracy, unsigned frequency_checking, unsigned iteration_limit);
 
+// сходится за n(размерность пространства) шагов
+// если не сошлись за n шагов, то ну, тут больше нечего делать, поэтому 
+// если iteration_limit > n, то мы все равно делаем n итераций, циклы лучше воротить не внутри метода
+[[nodiscard]] Vector conjugate_gradients(const CSR& csr, Vector& x_0, const Vector& b,
+        double required_accuracy, unsigned iteration_limit);
+
 }

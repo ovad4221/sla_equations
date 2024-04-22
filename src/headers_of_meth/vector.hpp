@@ -34,15 +34,15 @@ public:
     const std::vector<double>& get_vector() const;
 
     // Получение размерности вектора
-    unsigned int get_size() const;
+    size_t get_size() const;
 
     // Получение значения i-ой координаты вектора
-    double get_value(unsigned int i) const;
+    double get_value(size_t i) const;
 
-    double& operator[] (unsigned int i);
+    double& operator[] (size_t i);
 
     // Задание значения i-ой координаты вектора равным value
-    void set_value(unsigned int i, int value);
+    void set_value(size_t i, double value);
 
     bool operator== (const Vector& v2) const;
 

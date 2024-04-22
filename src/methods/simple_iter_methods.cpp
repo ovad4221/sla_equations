@@ -1,5 +1,6 @@
 #include "headers_of_meth/simple_iter_methods.hpp"
 #include "headers_of_meth/chebyshev.hpp"
+#include <cmath>
 
 
 [[nodiscard]] Vector iter_methods::jacobi_iter(const CSR& csr, Vector& x_0, const Vector& b, 
@@ -147,4 +148,32 @@
     return res;
 }
 
+[[nodiscard]] Vector iter_methods::conjugate_gradients(const CSR& csr, Vector& x_0, const Vector& b,
+        double required_accuracy, unsigned iteration_limit) {
+    // // чтобы понимать сколько раз перезапускать метод
+    // unsigned q = std::ceil(static_cast<double>(iteration_limit) / static_cast<double>(x_0.get_size()));
+    iteration_limit = (iteration_limit < x_0.get_size()) ? iteration_limit : x_0.get_size();
 
+    Vector r = csr * x_0 - b;
+    Vector r_old = r;
+    Vector d = r;
+    if (r.module_v() < required_accuracy) {
+        return x_0;
+    }
+
+    for (size_t i = 0; i < iteration_limit; ++i) {
+        // x_0 = x_0 - alp * d;
+        x_0 = x_0 - (r * r) / (d * (csr * d)) * d;
+        // r ^ (i + 1)
+        r = csr * x_0 - b;
+        if (r.module_v() < required_accuracy) {
+            return x_0;
+        }
+        // betta = (r_old * r_old) / (r * r); d = r^(i + 1) + betta * d ^ i
+        // d ^ (i + 1)
+        d = r + (r_old * r_old) / (r * r) * d;
+        r_old = r;
+    }
+
+    return x_0;
+}
