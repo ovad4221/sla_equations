@@ -42,19 +42,19 @@ const std::vector<double>& Vector::get_vector() const {
     return vect;
 }
 
-unsigned int Vector::get_size() const {
+size_t Vector::get_size() const {
     return vect.size();
 }
 
-double Vector::get_value(unsigned int i) const {
+double Vector::get_value(size_t i) const {
     return vect[i];
 }
 
-double& Vector::operator[] (unsigned int i) {
+double& Vector::operator[] (size_t i) {
     return vect[i];
 }
 
-void Vector::set_value(unsigned int i, int value) {
+void Vector::set_value(size_t i, double value) {
     vect[i] = value;
 }
 
