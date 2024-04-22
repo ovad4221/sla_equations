@@ -9,6 +9,7 @@ else ()
         headers_of_meth/vector.hpp
         headers_of_meth/simple_iter_methods.hpp
         headers_of_meth/householder.hpp
+        headers_of_meth/chebyshev.hpp
         )
 
     set(SOURCES
@@ -18,6 +19,7 @@ else ()
         methods/vector.cpp
         methods/simple_iter_methods.cpp
         methods/householder.cpp
+        methods/chebyshev.cpp
         )
 
     source_group("Header Files" FILES ${HEADERS})
