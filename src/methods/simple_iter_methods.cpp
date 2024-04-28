@@ -169,9 +169,9 @@
         if (r.module_v() < required_accuracy) {
             return x_0;
         }
-        // betta = (r_old * r_old) / (r * r); d = r^(i + 1) + betta * d ^ i
+        // betta = (r * r) / (r_old * r_old); d = r^(i + 1) + betta * d ^ i
         // d ^ (i + 1)
-        d = r + (r_old * r_old) / (r * r) * d;
+        d = r + (r * r) / (r_old * r_old) * d;
         r_old = r;
     }
 
